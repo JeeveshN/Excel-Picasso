@@ -50,19 +50,26 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--image", help="Path to image file", required=True)
-    parser.add_argument("--orignal", action="store_true",help="Keep the orignal size of the image.Without this image would be scaled down")
-    parser.add_argument("--tiny", action="store_true",help="Scale down image to 12 percent.Usefull while dealing with very high resolution images")
+    parser.add_argument(
+        "--orignal",
+        action="store_true",
+        help="Keep the orignal size of the image.Without this image would be scaled down",
+    )
+    parser.add_argument(
+        "--tiny",
+        action="store_true",
+        help="Scale down image to 12 percent.Usefull while dealing with very high resolution images",
+    )
 
     image_path = parser.parse_args().image
     orignal = parser.parse_args().orignal
     tiny = parser.parse_args().tiny
 
     image = cv2.imread(image_path)
-   
+
     if not orignal and not tiny:
         image = cv2.resize(image, (0, 0,), fx=0.35, fy=0.35)
     elif tiny and not orignal:
         image = cv2.resize(image, (0, 0,), fx=0.12, fy=0.12)
-    
 
     paint_spreadsheet(len(image), len(image[0]), image, os.path.basename(image_path).split(".")[0])
