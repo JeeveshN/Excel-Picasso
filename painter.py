@@ -50,8 +50,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--image", help="Path to image file", required=True)
-    parser.add_argument("--orignal", action="store_true")
-    parser.add_argument("--tiny", action="store_true")
+    parser.add_argument("--orignal", action="store_true",help="Keep the orignal size of the image.Without this image would be scaled down")
+    parser.add_argument("--tiny", action="store_true",help="Scale down image to 12 percent.Usefull while dealing with very high resolution images")
 
     image_path = parser.parse_args().image
     orignal = parser.parse_args().orignal
